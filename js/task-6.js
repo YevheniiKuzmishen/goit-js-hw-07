@@ -3,26 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const createBtn = document.querySelector('[data-create]');
   const destroyBtn = document.querySelector('[data-destroy]');
   const boxesContainer = document.querySelector('#boxes');
+  const fragment = document.createDocumentFragment();
 
   createBtn.addEventListener('click', () => {
     const amount = Number(input.value);
     if (amount >= 1 && amount <= 100) {
-      createBoxes(amount);
+      createBoxes(amount, fragment);
       input.value = '';
-    } 
+      boxesContainer.appendChild(fragment);
+    }
   });
 
   destroyBtn.addEventListener('click', () => {
     destroyBoxes();
   });
 
-  function createBoxes(amount) {
+  function createBoxes(amount, fragment) {
     for (let i = 0; i < amount; i++) {
       const box = document.createElement('div');
       box.style.width = `${30 + i * 10}px`;
       box.style.height = `${30 + i * 10}px`;
       box.style.backgroundColor = getRandomHexColor();
-      boxesContainer.appendChild(box);
+      fragment.appendChild(box);
     }
   }
 

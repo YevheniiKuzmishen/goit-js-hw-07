@@ -27,12 +27,15 @@ const images = [
 
 
 const gallery = document.querySelector('.gallery');
+const fragment = document.createDocumentFragment();
 
 images.forEach(image => {
   const li = document.createElement('li');
   li.innerHTML = `<img src="${image.url}" alt="${image.alt}">`;
   li.classList.add('gallery-item');
-  gallery.appendChild(li);
+  fragment.appendChild(li);
 });
+
+gallery.appendChild(fragment);
 
 
